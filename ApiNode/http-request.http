@@ -1,0 +1,191 @@
+####
+
+POST http://localhost:8083/users/register
+Content-Type: application/json
+
+{
+	"firstName" : "camelddy",
+	"lastName" : "hohoose",
+	"email" : "diddderevina@outlook.com",
+	"password" : "semmy1409"
+}
+
+
+########
+
+GET http://localhost:8083/users
+x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjRlZGExY2IyZDQyNjYwNzNhYTUyYTllIiwiZW1haWwiOiJkaWRkZGVyZXZpbmFAb3V0bG9vay5jb20iLCJpYXQiOjE2OTMyOTU0MzQsImV4cCI6MTY5MzMwMjYzNH0.cVfalQCOIpI2DgPUo5lNVKYpyJtNMDSOKq57qlRpKE0
+
+
+
+####
+
+POST http://localhost:8083/users/login
+Content-Type: application/json
+
+{
+
+	"email" : "diddderevina@outlook.com",
+	"password" : "semmy1409"
+}
+
+####
+####
+POST http://localhost:8083/articles
+Content-Type: application/json
+
+{
+  "nom" : "manteau",
+	"price" : 132 ,
+	"description" : "super rrrce",
+	"barcode" : "AEAsssddEEAEAE"
+}
+
+####
+####
+
+
+GET http://localhost:81/articles/
+####
+####
+
+GET http://localhost:8083/
+####
+####
+
+GET http://host.docker.internal:8083/api/test/mod
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbGNjZWNjZWVlIiwiaWF0IjoxNjQwNjc2MTIxLCJleHAiOjE2NDA3NjI1MjF9.Ny0_Ma-U7sFpYSFyvANWIYDOaksSTIFAFr33NvzQQjnu_fpzksDoPHGt_pOM89-cyc03K5PPEqDhe8t-qM5GkA
+####
+####
+
+POST  http://host.docker.internal:8083/api/auth/signin
+Content-Type: application/json
+
+{
+ "username":"alccecceee",
+  "password":"password"
+}
+####
+
+
+
+###
+POST http://localhost:8082/api/auth/signup
+Content-Type: application/json
+
+{ "username": "alccecceee",
+ "email":"guidddoccsccesem@gmail.com",
+   "password": "password",
+   "roles":["mod","user"]
+}
+###
+###
+POST http://localhost:8083/api/login
+Content-Type: application/json
+
+{ "username": "Alice",
+   "password": "password"
+}
+###
+POST http://localhost:8081/api/logout
+Authorization: Bearer ddqa0ihkv0chfe8f3o9kh02id76deh9d
+###
+
+
+POST http://localhost:8081/api/post
+Authorization: Bearer hvag3rcq5u72ecnd765pu4uqdsktrb8c
+Content-Type: application/json
+
+{
+  "title": "stest",
+  "body": "password",
+ "toilette": 1274 ,
+  "toimol": "tpoto",
+  "personne": 2
+}
+###
+
+PUT http://localhost:8081/api/post/2
+Authorization: Bearer 6r2rbuv8snir9b63j0ak766hja1rb3lh
+Content-Type: application/json
+
+{
+  "title": "fffffffft",
+  "body": "password"
+
+}
+###
+######  get All
+GET http://localhost:8081/test
+
+######  get All
+GET http://localhost:8081/api/post
+Authorization: Bearer pm6e2q3h74r85j4lvi1tocr6gssthgpn
+
+####### get id
+GET http://localhost:8081/api/post/1
+Authorization: Bearer q5gi2bh31t1dqdph9e01oecg5ca9m9m0
+
+
+####
+GET http://localhost:8080/api/personne
+Authorization: Bearer 8t2ne8vrc64aeqtq7qflvd2e9psgj2gc
+#####
+GET http://localhost:8080/commande
+Accept: application/json
+#####
+GET http://localhost:8080/article
+Accept: application/json
+######## delete start
+GET http://localhost:8080/post/delete
+Accept: application/json
+###
+DELETE http://localhost:8080/api/personne/3
+Accept: application/json
+####
+DELETE http://localhost:8080/api/commande/3
+Accept: application/json
+#####
+DELETE http://localhost:8080/api/article/2
+Accept: application/json
+####### get id
+GET http://localhost:8081/api/post/1
+Authorization: Bearer q5gi2bh31t1dqdph9e01oecg5ca9m9m0
+
+###
+GET http://localhost:8080/personne/2
+Accept: application/json
+####
+GET http://localhost:8080/commande/2
+Accept: application/json
+#####
+GET http://localhost:8080/article/2
+Accept: application/json
+############ Creation
+GET http://localhost:8080/post/save
+Accept: application/json
+###
+GET http://localhost:8080/personne/save
+Accept: application/json
+####
+GET http://localhost:8080/commande/save
+Accept: application/json
+#####
+GET http://localhost:8080/article/save
+Accept: application/json
+
+############### Update
+GET http://localhost:8080/post/update/3
+Accept: application/json
+###
+GET http://localhost:8080/personne/update/3
+Accept: application/json
+####
+GET http://localhost:8080/commande/update/3
+Accept: application/json
+#####
+GET http://localhost:8080/article/update/3
+Accept: application/json
+###############
+
+POST http://localhost:8080/api/login/
