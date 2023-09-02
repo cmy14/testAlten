@@ -20,7 +20,7 @@ const mongoPassword = process.env.MONGO_PASSWORD;
 var urlmongo = "mongodb://"+mongoUser+":"+mongoPassword+"@"+mongoHost+":"+mongoPort+"/"+mongoDb+"?authSource=admin"; 
 console.log( urlmongo);
 mongoose.connect(urlmongo);
-
+mongoose.set('strictQuery', true);
 var db = mongoose.connection; 
 db.on('error', console.error.bind(console, 'Erreur lors de la connexion')); 
 db.once('open', function (){

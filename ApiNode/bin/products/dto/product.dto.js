@@ -16,8 +16,8 @@ class CreateProductDTO {
 }
 exports.CreateProductDTO = CreateProductDTO;
 class ProductResponseDTO {
-    constructor(_id, code, name, description, price, quantity, inventoryStatus, category, image, rating) {
-        this._id = _id;
+    constructor(id, code, name, description, price, quantity, inventoryStatus, category, image, rating) {
+        this.id = id;
         this.code = code;
         this.name = name;
         this.description = description;

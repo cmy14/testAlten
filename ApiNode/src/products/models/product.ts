@@ -1,5 +1,6 @@
 
-import { Document, Schema, model } from "mongoose";
+import mongoose, { Document, Schema, model } from "mongoose";
+const AutoIncrement = require('mongoose-sequence')(mongoose);
 export interface ProductDocument extends Document {
   _id: number;
   code: string;
@@ -15,7 +16,7 @@ export interface ProductDocument extends Document {
 
 const productSchema = new Schema<ProductDocument>({
   
-  _id: { type: Number, },
+  _id: Number,
   code: { type: String, required: true },
   name: { type: String, required: true },
   description: { type: String, required: true },
@@ -26,5 +27,12 @@ const productSchema = new Schema<ProductDocument>({
   image : { type: String, required: false},
   rating : { type: Number, required: false},
 });
-
+productSchema.plugin(AutoIncrement, { inc_field: '_id' });
+productSchema.set('toJSON', {
+  transform: function (doc, ret) {
+    ret.id = ret._id;
+    delete ret._id;
+    delete ret.__v; // Optionally, remove the __v field
+  },
+});
 export const ProductModel = model<ProductDocument>("Product", productSchema);

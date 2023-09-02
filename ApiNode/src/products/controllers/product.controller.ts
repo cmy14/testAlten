@@ -1,4 +1,4 @@
-// src/articles/application/ProductController.ts
+// src/products/application/ProductController.ts
 import { Request, Response } from "express";
 import { ProductService } from "../services/product.service";
 
@@ -8,9 +8,9 @@ import { ProductMapper } from "../mapper/productmapper";
 import { ProductRepository } from "../repository/product.repo";
 
 export class ProductController {
-  constructor(private articleRepository: ProductRepository) {}
+  constructor(private productRepository: ProductRepository) {}
 
-  productService = new ProductService(this.articleRepository); // Create an instance of the consolidated service
+  productService = new ProductService(this.productRepository); // Create an instance of the consolidated service
 
   createProduct = async (req: Request, res: Response) => {
    const  createProductDTO = req.body as CreateProductDTO;
@@ -20,10 +20,10 @@ export class ProductController {
 
       const createdProduct: ProductDocument = await this.productService.createProduct(createProductDTO);
       const responseDTO = ProductMapper.toProductResponseDTO(createdProduct);
-      res.status(201).json(createdProduct);
+      res.status(201).json(responseDTO);
     } catch (error) {
-      console.error("Error creating article:", error);
-      res.status(500).json({ error: "An error occurred while creating the article." });
+      console.error("Error creating product:", error);
+      res.status(500).json({ error: "An error occurred while creating the product." });
     }
   };
 
@@ -31,12 +31,13 @@ export class ProductController {
        const  productId = Number( req.params.id);
 
     try {
-      const article: ProductDocument | null = await this.productService.getProductById(productId);
-      if (!article) {
+      const product: ProductDocument | null = await this.productService.getProductById(productId);
+      if (!product) {
         res.status(404).json({ error: "Product not found." });
         return;
       }
-      res.status(200).json(article);
+      const responseDTO = ProductMapper.toProductResponseDTO(product);
+      res.status(200).json(product);
     } catch (error) {
       console.error("Error retrieving article:", error);
       res.status(500).json({ error: "An error occurred while retrieving the article." });
@@ -47,13 +48,13 @@ export class ProductController {
 
     const numeroPage = Number(req.body.page);
     const nombreElementPage = Number(req.body.pageElement);
-
+    //console.log("fin :"+fin)
     try {
-      const articles: ProductDocument[] = await this.productService.getAllProducts( numeroPage,  nombreElementPage );
-      res.status(200).json(articles);
+      const products: ProductDocument[] = await this.productService.getAllProducts( numeroPage,  nombreElementPage );
+      res.status(200).json(products);
     } catch (error) {
-      console.error("Error retrieving articles:", error);
-      res.status(500).json({ error: "An error occurred while retrieving articles." });
+      console.error("Error retrieving products:", error);
+      res.status(500).json({ error: "An error occurred while retrieving products." });
     }
   };
 
@@ -70,13 +71,11 @@ export class ProductController {
         res.status(404).json({ error: "Article not found." });
         return;
       }
-      const responseDTO = ProductMapper.toProductResponseDTO(updatedProduct);
- 
-      res.status(200).json(responseDTO);
+      res.status(200).json(updatedProduct);
     } catch (error) {
-      console.error("Error updating article:", error);
+      console.error("Error updating product:", error);
      
-      res.status(500).json({error: "An error occurred while updating the article." });
+      res.status(500).json({error: "An error occurred while updating the product." });
     }
   };
 
@@ -96,9 +95,4 @@ export class ProductController {
       res.status(500).json({error : "An error occurred while deleting the product."});
     }
   };
-
-
-
-
-
 }

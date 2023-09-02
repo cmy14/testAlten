@@ -5,8 +5,8 @@ import { ProductRepository } from "./product.repo";
 
 export class ProductRepositoryImpl implements ProductRepository {
   
-  async create(articleData: Partial<ProductDocument>): Promise<ProductDocument> {
-    const createdArticle = await ProductModel.create(articleData);
+  async create(productDTO: Partial<ProductDocument>): Promise<ProductDocument> {
+    const createdArticle = await ProductModel.create(productDTO);
     return createdArticle;
   }
 
@@ -17,8 +17,8 @@ export class ProductRepositoryImpl implements ProductRepository {
 
   async getAllProducts(debut:number , fin:number ): Promise<ProductDocument[]> {
 
-    const articles = (await ProductModel.find()).splice(debut , fin );
-    return articles;
+    const product = (await ProductModel.find()).splice(debut , fin );
+    return product;
   }
 
 

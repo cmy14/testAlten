@@ -15,15 +15,18 @@ export class ProductService {
   }
 
   async getAllProducts(  page : number , nombreParge : number): Promise<ProductDocument[]> {
-    const debut = (page-1)*nombreParge ;
-    const fin = page + debut
+    const debut = (page-1) * nombreParge ;
+    const fin = nombreParge  + debut
+
+    console.log("debut service :"+debut)
+    console.log("fin  service:"+fin)
     const products = await this.productRepository.getAllProducts(debut , fin );
     return products;
   }
 
   async createProduct(productDTO: CreateProductDTO): Promise<ProductDocument> {
-    const product = ProductMapper.toProductDocument(productDTO);
-    const createdProduct = await this.productRepository.create(product);
+   // const product = ProductMapper.toProductDocument(productDTO);
+    const createdProduct = await this.productRepository.create(productDTO);
     return createdProduct;
   }
 
