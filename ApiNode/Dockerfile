@@ -10,6 +10,7 @@ ENV MONGO_HOST="host.docker.internal"
 ENV MONGO_PORT=27017
 ENV MONGO_DB="testnode"
 ENV MONGO_USER="root"
+ENV MONGO_DB_TEST="testnodetest"
 ENV MONGO_PASSWORD="example"
 
 # Install app dependencies
@@ -20,10 +21,14 @@ COPY package*.json ./
 # Install app dependencies
 RUN npm install
 
+#test 
+RUN npm run test 
+
 # Copy the rest of the application code to the container
 COPY . .
 
 # Build TypeScript code
+
 RUN npm run build
 # If you are building your code for production
 # RUN npm ci --omit=dev
