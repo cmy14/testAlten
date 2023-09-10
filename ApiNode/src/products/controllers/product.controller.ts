@@ -1,7 +1,7 @@
 // src/products/application/ProductController.ts
 import { Request, Response } from "express";
 import { ProductService } from "../services/product.service";
-
+import * as url from 'url';
 import { ProductDocument } from "../models/product";
 import { CreateProductDTO } from "../dto/product.dto";
 import { ProductMapper } from "../mapper/productmapper";
@@ -49,6 +49,16 @@ export class ProductController {
     const numeroPage = Number(req.body.page);
     const nombreElementPage = Number(req.body.pageElement);
     //console.log("fin :"+fin)
+
+  
+    // parametre  dans l url 
+    // const parsedUrl = url.parse(req.url, true); 
+    // const queryParameters = parsedUrl.query;
+  
+    // const numeroPage = queryParameters.page;
+    // const nombreElementPage = queryParameters.pageElement;
+
+
     try {
       const products: ProductDocument[] = await this.productService.getAllProducts( numeroPage,  nombreElementPage );
       res.status(200).json(products);
@@ -68,7 +78,7 @@ export class ProductController {
     try {
       const updatedProduct: ProductDocument | null = await this.productService.updateProduct(productId,updateProductDTO);
       if (!updatedProduct) {
-        res.status(404).json({ error: "Article not found." });
+        res.status(404).json({ error: "product not found." });
         return;
       }
       res.status(200).json(updatedProduct);

@@ -23,7 +23,7 @@ export class ProductRepositoryImpl implements ProductRepository {
 
 
   async deleteProduct(id: number) : Promise<ProductDocument | null> {
-    //  ProductModel.deleteOne({_id:id})
+    //  ProductModel.deleteOne({x:id})
     const deletedProduct = await ProductModel.findByIdAndDelete(id);
     return deletedProduct;
 

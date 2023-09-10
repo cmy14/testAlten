@@ -9,6 +9,10 @@ const config: Config = {
   // All imported modules in your tests should be mocked automatically
   // automock: false,
 
+  transformIgnorePatterns: [
+    "node_modules/(?!(<package-name>|<second-package-name>)/)"
+  ],
+
   // Stop running tests after `n` failures
   // bail: 0,
 
@@ -19,13 +23,13 @@ const config: Config = {
   clearMocks: true,
 
   // Indicates whether the coverage information should be collected while executing the test
-  collectCoverage: true,
+  // collectCoverage: false,
 
   // An array of glob patterns indicating a set of files for which coverage information should be collected
   // collectCoverageFrom: undefined,
 
   // The directory where Jest should output its coverage files
-  coverageDirectory: "coverage",
+  // coverageDirectory: undefined,
 
   // An array of regexp pattern strings used to skip coverage collection
   // coveragePathIgnorePatterns: [
@@ -197,3 +201,14 @@ const config: Config = {
 };
 
 export default config;
+
+module.exports = {
+  preset: 'ts-jest',
+  testEnvironment: 'node',
+  moduleFileExtensions: ['ts', 'js'],
+  transform: {
+    '^.+\\.ts$': 'ts-jest',
+  },
+
+
+};

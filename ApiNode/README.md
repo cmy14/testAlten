@@ -97,3 +97,20 @@ option -d to detatch
 tsc --build --verbose --incremental --watch
 
 
+
+// test  
+ site pour la configuration
+https://plainenglish.io/blog/beginners-guide-to-testing-jest-with-node-typescript
+
+ npm install --save-dev jest @types/jest mongoose mongoose-sequence @types/mongoose 
+
+ // jest.config.js
+module.exports = {
+  preset: 'ts-jest',
+  testEnvironment: 'node',
+  moduleFileExtensions: ['ts', 'js'],
+  transform: {
+    '^.+\\.ts$': 'ts-jest',
+  },
+  testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.ts$',
+};

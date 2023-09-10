@@ -12,13 +12,15 @@ class ProductService {
     }
     async getAllProducts(page, nombreParge) {
         const debut = (page - 1) * nombreParge;
-        const fin = page + debut;
+        const fin = nombreParge + debut;
+        console.log("debut service :" + debut);
+        console.log("fin  service:" + fin);
         const products = await this.productRepository.getAllProducts(debut, fin);
         return products;
     }
     async createProduct(productDTO) {
-        const product = productmapper_1.ProductMapper.toProductDocument(productDTO);
-        const createdProduct = await this.productRepository.create(product);
+        // const product = ProductMapper.toProductDocument(productDTO);
+        const createdProduct = await this.productRepository.create(productDTO);
         return createdProduct;
     }
     async updateProduct(productId, productDTO) {
